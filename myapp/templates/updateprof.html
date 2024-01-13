@@ -1,0 +1,55 @@
+{% extends 'index.html' %} 
+{% block content %} 
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top p-4">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'main' %}"><i class="fa fa-mobile-phone"> </i><b style="color: lime;">NEXUS</b></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" aria-current="page" href="{% url 'main' %}"><i class="fa fa-home"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" href="{% url 'cata' %}"><i class="fa fa-user">Collections</i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" href="{% url 'sell' %}"><i class="fa fa-user"></i>Sell Properties</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" href="{% url 'profv' %}"><i class="fa fa-user"></i>profview</a>
+          </li>
+          <li class="nav-item">
+          {% if request.user.is_authenticated %}
+            <a class="nav-link btn-outline-info" href="{% url 'lgout' %}"><i class="fa fa-user"></i>LogOut</a>
+          {% else %}
+            <a class="nav-link btn-outline-info" href="{% url 'log' %}"><i class="fa fa-user"></i>Login</a>
+          {% endif %}          
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav><br><br><br><br><br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <form action="{% url 'updatesave' user.id %}" method="POST">
+                {% csrf_token %}
+                <label for="">First Name:</label><br><br>
+                <input type="text" name="firstname" value="{{user.first_name}}"><br><br>
+                <label for="">Last Name:</label><br><br>
+                <input type="text" name="lastname" value="{{user.last_name}}"><br><br>
+                <label for="" >Place:</label><br><br>
+                <input type="text" name="place" value="{{cust.place}}"><br><br>
+                <label for="">Phone:</label><br><br>
+                <input type="text" name="phone" value="{{cust.phone}}"><br><br>
+                <input type="submit" class="btn bg-warning text-white"><br><br>
+            </form>
+        </div>
+    </div>
+</div>
+<br><br><br><br>
+{% endblock content %} 

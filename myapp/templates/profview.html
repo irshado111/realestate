@@ -1,0 +1,148 @@
+{% extends 'index.html' %}
+{load static}
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top p-4">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'main' %}"><i class="fa fa-mobile-phone"> </i><b style="color: lime;">NEXUS</b></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link btn-outline-info" aria-current="page" href="{% url 'main' %}"><i class="fa fa-home"></i>Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn-outline-info" href="{% url 'cata' %}"><i class="fa fa-user">Collections</i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn-outline-info" href="{% url 'sell' %}"><i class="fa fa-user"></i>Sell Properties</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn-outline-info" href="{% url 'profv' %}"><i class="fa fa-user"></i>profview</a>
+              </li>
+              <li class="nav-item">
+                {% if request.user.is_authenticated %}
+                <a class="nav-link btn-outline-info" href="{% url 'lgout' %}"><i class="fa fa-user"></i>LogOut</a>
+                {% else %}
+                <a class="nav-link btn-outline-info" href="{% url 'log' %}"><i class="fa fa-user"></i>Login</a>
+                {% endif %}
+              </li>
+        </ul>
+      </div>
+    </div>
+  </nav><br><br><br>
+
+<br><br>
+<div class="card bg-primary">
+    <div class="card card-header text-white"><h1 style="text-align:center ;">Profile</h1></div>
+</div><br><br>
+
+
+<center>
+    <div class="">
+        <div class="row">
+            <div class="col-lg-12">
+                <table border="2px" style="border-radius: 5px;">
+                    <tr class=" bg-dark text-white">
+                    <th class=" p-2">
+                        <h4>NAME</h4>
+                    </th>
+                    <th class=" p-2">
+                        <h4>PLACE</h4>
+                    </th>
+                    <th class=" p-2">
+                        <h4>
+                            PHONE
+                        </h4>
+                    </th>
+                    <th class="p-1">
+                        <h4>
+                            Update Detailes
+                        </h4>
+                    </th>
+                    </tr>
+                {% for i in porfv %}
+                    {% for j in data %}
+
+                <tr>
+                    <td class=" p-2">
+                        <p>
+                            {{i.first_name}}{{i.last_name}}
+                        </p>
+                    </td>
+                    <td class=" p-2">
+                        <p>
+                            {{j.place}}
+                        </p>
+                    </td>
+                    <td class=" p-2">
+                        <p>
+                            {{j.phone}}
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <a href="{% url 'updateprof' i.id %}" class="btn bg-primary mx-xl-5 text-white">Edit</a>
+                        </p>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+
+            </table>
+        </div>
+    </div>
+</div>
+</center>
+    
+<br><br>
+
+<div class="card bg-primary">
+    <div class="card card-header text-white"><h1 style="text-align:center ;">Your Selled Properties</h1></div>
+</div><br><br>
+
+<div class="container">
+    <div class="row ">
+        <div class="col-lg-4">
+            <table border="1px">
+                <tr class="bg-success text-light">
+                    <th><h4 class="p-3">property image</h4></th>
+                    <th><h4 class="p-3">property place</h4></th>
+                    <th><h4 class="p-3">property type</h4></th>
+                    <th><h4 class="p-3">Delete property</h4></th>
+
+                </tr>
+                {% for i in prop %}
+                <tr>
+                    <td>
+                        <p class="p-3"><img src="{{i.property_image.url}}" alt="sellview" srcset="" width="100px"></p>
+                    </td>
+                    <td><p class="p-3">{{i.property_place}}</p></td>
+                    <td>
+                        <p class="p-3">{{i.property_type}}</p>
+                    </td>
+                    <td>
+                        <a  href="{% url 'deletesell' i.id %}" class="btn bg-secondary text-info">DELETE</a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert dismissible fade show" role="alert">
+<strong></strong><p><i class="text-info"></i>&nbsp;{{message}}</p>
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+</div>
+{% endfor %}
+<br><br><br><br>
+
+
+
+{% endblock content %}

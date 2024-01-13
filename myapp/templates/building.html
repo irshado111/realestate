@@ -1,0 +1,105 @@
+{% extends 'index.html' %}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top p-4">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'main' %}"><i class="fa fa-mobile-phone"> </i><b style="color: lime;">NEXUS</b></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" aria-current="page" href="{% url 'main' %}"><i class="fa fa-home"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" href="{% url 'cata' %}"><i class="fa fa-user">Collections</i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" href="{% url 'sell' %}"><i class="fa fa-user"></i>Sell Properties</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" href="{% url 'profv' %}"><i class="fa fa-user"></i>profview</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" href="{% url 'lgout' %}"><i class="fa fa-user"></i>LogOut</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav><br><br><br><br>
+
+  
+  <div class="container" id="sell">
+    <center>
+        <div>
+            <h1><i class="fa fa-users"></i> sell</h1>
+        </div>
+        <form action="" method="POST" enctype="multipart/form-data" onsubmit="regval()" >
+          {% csrf_token %}
+          <!-- {% if not a.name %} -->
+          <!-- <p class="text-danger"> pleas enter username</p> -->
+          <!-- {% endif %} -->
+          Owner Name:<br>
+          <input style="background-color:lightblue; border: 0px; border-radius: 4px; color:darkblue" id="name" type="text" name="name"><br>
+          image:<br>
+            <input style="background-color:lightblue; border: 0px; border-radius: 4px; color:darkblue" type="file" name="img"><br>
+            country:<br>
+            <select style="background-color:lightblue; border: 0px; border-radius: 4px; color:darkblue" name="country" id="">
+                <option value=" selecthere" selected disabled>select</option>
+                <option value="india">india</option>
+    
+            </select><br>
+            state:<br>
+            <select style="background-color:lightblue; border: 0px; border-radius: 4px; color:darkblue" name="state" id="">
+                <option value=" selecthere" selected disabled>select</option>
+                <option value="kerala">kerala</option>
+            </select><br>
+            district:<br>
+            <select style="background-color:lightblue; border: 0px; border-radius: 4px; color:darkblue" name="district" id="">
+                <option value=" selecthere" selected disabled>select here</option>
+                <option value="kozhikode">kozhikode</option>
+                <option value="kannur">kannur</option>
+                <option value="malappuram">malappuram</option>
+                <option value="palakad">palakad</option>
+    
+    
+            </select><br>
+            place:<br>
+            <input style="background-color:lightblue; border: 0px; border-radius: 4px; color:darkblue" type="text" name="place"><br>        
+          price:<br>
+            <input style="background-color:lightblue; border: 0px; border-radius: 4px; color:darkblue" type="text" name="price"><br>
+          Property Type:<br>
+            <select style="background-color:lightblue; border: 0px; border-radius: 4px; color:darkblue" name="property" id="">
+              <option value="building" selected>building</option>
+              
+            </select><br>
+            Phone Number:<br>
+            <input style="background-color:lightblue; border: 0px; border-radius: 4px; color:darkblue" type="text" placeholder="contact number" name="phone"><br>
+            Floar:<br>
+            <input style="background-color:lightblue; border: 0px; border-radius: 4px; color:darkblue" type="number" name="floar"><br>        
+            Ploat Area:<br>
+            <input style="background-color:lightblue; border: 0px; border-radius: 4px; color:darkblue" type="text" placeholder="5412 sq ft" name="area"><br>
+            discription:<br>
+            <textarea style="background-color:lightblue; border: 0px; border-radius: 4px; color:darkblue" cols="25" rows="5" name="disc" placeholder="enter all details about property eg:location,contact details etc.. "></textarea><br>
+            <button class=" btn p-2"  style="background-color:crimson ; border: 0px; border-radius: 5px; color: rgb(252, 225, 225);" type="submit" value="save">SAVE</button>
+
+        </form>
+    </center>
+  </div><br><br><br>
+
+{% endblock content %}
+
+
+<script>
+  function regval(){
+    var owner_name=document.getElementById('name').values
+    if (owner_name==" ")
+      {
+        alert('please fill owner name')
+        return false;
+      }
+  }
+
+</script>
+

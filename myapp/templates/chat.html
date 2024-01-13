@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<div class="container bg-secondary px-lg-2 mt-lg-4">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table class="mx-lg-5 bg-info">
+            <tr>
+                <th colspan="2">
+                    <h3>Chat</h3>
+                </th>
+            </tr>
+            <tr rowspan="2">
+                <td>
+                    <p> <input type="text" name="name"></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><textarea name="com" id="" cols="30" rows="5"></textarea></td>
+            </tr>
+            <tr rowspan="2">
+                <td colspan="2">
+                    <button type="submit">Send</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+{% endblock content %}

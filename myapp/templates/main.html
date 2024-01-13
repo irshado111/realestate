@@ -1,0 +1,132 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top container-fluid p-4">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'main' %}"><i class="fa fa-mobile-phone"> </i><b style="color: lime;">NEXUS</b></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" aria-current="page" href="{% url 'main' %}"><i class="fa fa-home"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" href="{% url 'cata' %}"><i class="fa fa-user">Collections</i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" href="{% url 'sell' %}"><i class="fa fa-user"></i>Sell Properties</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" href="{% url 'profv' %}"><i class="fa fa-user"></i>profview</a>
+          </li>
+          
+          <li class="nav-item">
+            {% if request.user.is_authenticated %}
+              <a class="nav-link btn-outline-info" href="{% url 'lgout' %}"><i class="fa fa-user"></i>LogOut</a>
+            {% else %}
+              <a class="nav-link btn-outline-info" href="{% url 'log' %}"><i class="fa fa-user"></i>Login</a>
+            {% endif %}
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav><br><br><br><br>
+<div class="card container " id="search">
+  <div class="card-title">
+    <form  action="{% url 'search1' %}" class="d-flex" method="GET">
+      <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+</div><br>
+
+
+
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert dismissible fade show" role="alert">
+<strong></strong><p><i class="text-info">{{data.username}}</i>&nbsp;{{message}}</p>
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+</div>
+{% endfor %}
+
+<section class="bg-dark p-2">
+<div id="carouselExampleCaptions" class="carousel slide container-fluid" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner " >
+    <a href="{% url 'sell' %}">
+    <div class="carousel-item active">
+      <img src="{% static 'img/land.jpg' %}" class="d-block w-100 h-50" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5><b>Here You Can Find Lands</b></h5>
+        <p>you can find your dream land.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'img/shop.jpg' %}" class="d-block  w-100 h-50" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5><b>Here You Can Find Buildings</b></h5>
+        <p>you can find your dream buildings for your bussines.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'img/property.jpg' %}" class=" w-100 h-25 alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5><b>Here You Can Sell Properties</b></h5>
+        <p>you can find customers for buying you properties</p>
+      </div>
+    </div>
+  </a>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</section><br>
+
+<section>
+<div class="container  ">
+  <div class=" card text-white bg-secondary"><h2>Properties</h2>
+  <hr></div>
+</div>
+</section>
+
+{% for i in allview %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <img src="{{i.property_image.url}}" width="220px" height="150px" class="card-image-top" alt="Properties">
+          <h4>{{i.property_discription}}</h4>
+            
+        </div>
+        <div class="card-body">
+          <h4>{{i.property_place}}</h4>
+          
+        </div>
+        <a class="btn btn-success data-bs-target" href="{% url 'viewpropertydeatai' i.id %}">view</a>
+
+      </div>
+      
+    </div>
+  </div>
+
+</div><br>
+{% endfor %}
+<br><br><br><br><br>
+
+
+{% endblock content %}
+
+

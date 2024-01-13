@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#cname{
+ color: blue;   
+}
+h1{
+    margin-top: 50;
+}
+#text1{
+    text-align: center;
+    color: blueviolet;
+    /* background-color: aquamarine; */
+
+}
+
+
+
+#home{
+    background-image: url("/static/img/home.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: fixed;
+}
+
+#reg{
+    background-image: url('/static/img/regist.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: fixed;
+}
+
+.a{
+    color: antiquewhite;
+    background-color: green;
+    border-radius: 5px;
+    border: 0px;
+}
+
+#sell{
+    color: blue;
+}

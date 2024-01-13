@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top p-4">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'main' %}"><i class="fa fa-mobile-phone"> </i><b style="color: lime;">NEXUS</b></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" aria-current="page" href="{% url 'main' %}"><i class="fa fa-home"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" href="{% url 'cata' %}"><i class="fa fa-user">Collections</i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" href="{% url 'sell' %}"><i class="fa fa-user"></i>Sell Properties</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-info" href="{% url 'profv' %}"><i class="fa fa-user"></i>profview</a>
+          </li>
+          <li class="nav-item">
+          {% if request.user.is_authenticated %}
+            <a class="nav-link btn-outline-info" href="{% url 'lgout' %}"><i class="fa fa-user"></i>LogOut</a>
+          {% else %}
+            <a class="nav-link btn-outline-info" href="{% url 'log' %}"><i class="fa fa-user"></i>Login</a>
+          {% endif %}          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav><br><br><br>
+  <div class="container-fluid bg-primary mt-3 p-2">
+    <h3 class="text-light text-lg-center">Sell Your Proprties</h3>
+  </div><br>
+  <br>
+  
+<center>
+  <div class="continer">
+    
+      <div class="col-lg-6">
+        <div class="card" style="width: 18rem;">
+          <img src="{% static 'img/land.jpg' %}" class="card-img-top" alt="...">
+        <a class="btn btn-outline-success  text-info" href="{% url 'land' %}">Sell Land</a>
+        </div>
+      </div>
+    <br>
+      <div class="continer">
+        <div class="card" style="width: 18rem;">
+          <img src="{% static 'img/regist.jpg' %}" class="card-img-top" alt="...">
+        <a class="btn btn-outline-success  text-info" href="{% url 'flat' %}">Sell Flat</a>
+        </div>
+      </div>
+    <br>
+    
+    <div class="continer">
+      <div class="card" style="width: 18rem;">
+        <img src="{% static 'img/shop.jpg' %}" class="card-img-top" alt="...">
+      <a class="btn btn-outline-success  text-info" href="{% url 'building' %}">Sell Building</a>
+      </div>
+     
+    </div>
+  </div>
+
+</div>
+<br>
+</center>
+<br><br><br>
+  
+{% endblock content %}
